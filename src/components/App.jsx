@@ -1,37 +1,27 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import React, { Suspense, lazy } from "react";
+import { Routes, Route, NavLink } from "react-router-dom";
 
-import {ContactForm} from "./phoneBook/ContactForm";
-import {ContactList} from "./phoneBook/ContactList";
-import {Filter} from "./phoneBook/Filter";
-import "./phoneBook/phonebook.css";
-import { getError, getIsLoading } from "redux/selectors";
-import { fetchContacts } from "redux/operations";
+const Register = lazy(() => import("./pages/Registration"));
+const Login = lazy(() => import("./pages/Login"));
+const Contacts = lazy(() => import("./pages/Contacts"));
+
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
 
   return (
     <div className="main">
-      <div className="first-wrap">
-        <h1>Phonebook</h1>
-        <ContactForm/>
-      </div>
-      {
-        isLoading && !error && <b>Request in progress...</b>
-      }
-        <div className="second-wrap">
-          <h2>Contacts</h2>
-          <Filter/>
-          <ContactList/>
-        </div>
-      </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <nav>
+          <NavLink to="/register">register</NavLink>
+          <NavLink to="/login">login</NavLink>
+          <NavLink to="/contacts">/contacts</NavLink>
+        </nav>
+        <Routes>
+          <Route path="/register" element={<Register/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/contacts" element={<Contacts/>} />
+        </Routes>
+      </Suspense>
+    </div>
   );
 }
