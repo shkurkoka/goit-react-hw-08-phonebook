@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getContacts } from "../../redux/contacts/selectors";
+import { getContacts } from "../../redux/contacts/contactsSlice";
 import { addContact } from "../../redux/contacts/operations";
 
 export const ContactForm = () => {
@@ -11,7 +11,12 @@ export const ContactForm = () => {
     evt.preventDefault();
     const form = evt.currentTarget;
     const name = form.elements.name.value;
-    const phone = form.elements.number.value;
+    const number = form.elements.number.value;
+
+    const formData = {
+      name,
+      number,
+    }
 
     const isNameExists = contacts.some(
       (contact) => contact.name.toLowerCase() === name.toLowerCase()
@@ -22,7 +27,7 @@ export const ContactForm = () => {
       return;
     }
 
-    dispatch(addContact({ name: name, phone: phone }));
+    dispatch(addContact(formData));
     form.reset();
   }
 

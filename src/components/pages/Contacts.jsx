@@ -6,7 +6,7 @@ import {ContactForm} from "../phoneBook/ContactForm";
 import {ContactList} from "../phoneBook/ContactList";
 import { Filter } from "../phoneBook/Filter";
 import "../phoneBook/phonebook.css";
-import { getError, getIsLoading } from "redux/contacts/selectors";
+import { getError, getIsLoading } from "redux/contacts/contactsSlice";
 import { fetchContacts } from "redux/contacts/operations";
 
 const Contacts = () => {

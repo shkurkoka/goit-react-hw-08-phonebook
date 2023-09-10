@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { instance } from "../auth/operations";
 import axios from "axios";
 // Для КОНТАКТІВ
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
@@ -7,7 +8,7 @@ export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/contacts");
+      const response = await instance.get("/contacts");
       return response.data;
     } catch (e) {
       // Обробка помилки
@@ -17,9 +18,9 @@ export const fetchContacts = createAsyncThunk(
 
 export const addContact = createAsyncThunk(
   "contacts/addContact",
-  async ({name, phone}, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-      const response = await axios.post("/contacts", {name, phone});
+      const response = await instance.post("/contacts", formData);
       return response.data;
     } catch (e) {
       // Обробка помилки
@@ -31,7 +32,7 @@ export const deleteContact = createAsyncThunk(
   "contacts/deleteContact",
   async (contactId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/contacts/${contactId}`);
+      const response = await instance.delete(`/contacts/${contactId}`);
       return response.data;
     } catch (e) {
       // Обробка помилки
