@@ -1,8 +1,8 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, NavLink } from "react-router-dom";
 import { getAuthentecation, getUserData } from "redux/auth/authReducer";
-import { logOutUser } from "redux/auth/operations";
+import { logOutUser, refreshUser } from "redux/auth/operations";
 
 const Register = lazy(() => import("./pages/Registration"));
 const Login = lazy(() => import("./pages/Login"));
@@ -15,6 +15,10 @@ export const App = () => {
   const authenticated = useSelector(getAuthentecation);
   const userData = useSelector(getUserData);
 
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+  
   return (
     <div className="main">
       <Suspense fallback={<div>Loading...</div>}>

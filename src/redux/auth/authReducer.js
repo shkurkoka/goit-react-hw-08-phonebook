@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerUser, loginUser, logOutUser } from "./operations";
+import { registerUser, loginUser, logOutUser, refreshUser } from "./operations";
 
 const handlePending = state => {
     state.isLoading = true;
@@ -53,6 +53,15 @@ const authSlice = createSlice({
             state.token = null;
         },
         [logOutUser.rejected]: handleRejected,
+
+        [refreshUser.pending]: handlePending,
+        [refreshUser.fulfilled](state, action) {
+            state.isLoading = false;
+            state.error = null;
+            state.authentecated = true;
+            state.userData = action.payload.user;
+        },
+        [refreshUser.rejected]: handleRejected,
     },
 });
 

@@ -56,11 +56,16 @@ export const logOutUser = createAsyncThunk(
 });
 
 export const refreshUser = createAsyncThunk(
-  "auth/loginUser",
+  "auth/refreshUser",
   async (_, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
       const refreshToken = state.auth.token;
+
+      if (!refreshToken) {
+        return thunkAPI.rejectWithValue("Please, user register first");
+      }
+
       token.set(refreshToken);
 
       const response = await instance.get("/users/current");

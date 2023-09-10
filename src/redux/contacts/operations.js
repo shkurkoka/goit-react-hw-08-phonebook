@@ -9,6 +9,7 @@ export const fetchContacts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await instance.get("/contacts");
+      console.log("data", response.data);
       return response.data;
     } catch (e) {
       // Обробка помилки
