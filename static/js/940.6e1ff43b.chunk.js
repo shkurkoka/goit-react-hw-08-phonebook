@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgoit_react_hw_08_phonebook=self.webpackChunkgoit_react_hw_08_phonebook||[]).push([[940],{5940:function(e,r,n){n.r(r);var t=n(1087),o=(n(1743),n(184));r.default=function(){return(0,o.jsxs)("div",{className:"",children:["Erorr 404. Sorry, page wasn't found.",(0,o.jsx)(t.rU,{to:"/register",className:"navLink",children:"Back to the Register page."})]})}},1743:function(){}}]);
+//# sourceMappingURL=940.6e1ff43b.chunk.js.map
