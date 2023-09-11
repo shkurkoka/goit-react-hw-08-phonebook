@@ -62,9 +62,9 @@ export const refreshUser = createAsyncThunk(
       const state = thunkAPI.getState();
       const refreshToken = state.auth.token;
 
-      if (!refreshToken) {
-        return thunkAPI.rejectWithValue("Please, user register first");
-      }
+      // if (!refreshToken) {
+      //   return thunkAPI.rejectWithValue("Please, user register first");
+      // }
 
       token.set(refreshToken);
 
@@ -74,4 +74,12 @@ export const refreshUser = createAsyncThunk(
       // Обробка помилки
       return thunkAPI.rejectWithValue(e.message);
     }
-});
+  }, 
+  {
+    condition: (_, { getState }) => {
+      const state = getState();
+      const token = state.auth.token;
+      if (!token) return false; 
+    }
+  }
+);

@@ -5,7 +5,7 @@ const NotFound = () => {
     return (
         <div className="">
             Erorr 404. Sorry, page wasn't found.
-            <Link to="/register">Back to the Register page.</Link>
+            <Link to="/register" className="navLink">Back to the Register page.</Link>
         </div>
     );
 }

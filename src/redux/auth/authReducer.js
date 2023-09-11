@@ -67,7 +67,7 @@ const authSlice = createSlice({
 
 export const getUserData = (state) => state.auth.userData;
 export const getUserToken = (state) => state.auth.token;
-export const getAuthentecation = (state) => state.auth.authentecated;
+export const getUserAuthentecation = (state) => state.auth.authentecated;
 export const getUserIsLoading = (state) => state.auth.isLoading;
 export const getUserError = (state) => state.auth.error;
 
