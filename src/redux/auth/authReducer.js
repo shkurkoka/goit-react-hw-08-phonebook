@@ -13,7 +13,7 @@ const handleRejected = (state, action) => {
 };
 
 const initialState = {
-    userData: null,
+    userData: { name: null, email: null },
     token: null,
     authentecated: false,
     isLoading: false,
@@ -59,7 +59,7 @@ const authSlice = createSlice({
             state.isLoading = false;
             state.error = null;
             state.authentecated = true;
-            state.userData = action.payload.user;
+            state.userData = action.payload;
         },
         [refreshUser.rejected]: handleRejected,
     },
