@@ -16,6 +16,10 @@
     flex-direction: column;
 }
 
+.label{
+    gap: 10px;
+}
+
 input{
     width: 200px;
     margin-top: 5px;
