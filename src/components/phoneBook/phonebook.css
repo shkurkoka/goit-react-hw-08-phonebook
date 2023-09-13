@@ -42,4 +42,5 @@ input{
     align-items: center;
     background-color: whitesmoke;
     border: 1px solid gray;
+    cursor: pointer;
 }
