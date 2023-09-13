@@ -4,6 +4,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import { getUserAuthentecation, getUserData } from "redux/auth/authReducer";
 import { logOutUser, refreshUser } from "redux/auth/operations";
 import { RestrictedRoute } from "./pages/RestrictedRoute";
+import { PrivateRoute } from "./pages/PrivateRoute";
 
 const Register = lazy(() => import("./pages/Registration"));
 const Login = lazy(() => import("./pages/Login"));
@@ -28,7 +29,7 @@ export const App = () => {
               <>
                 <NavLink to="/contacts" className={"navLink"}>Contacts</NavLink>
                 <span>Hello, {userData.name}</span>
-                <NavLink to="/register" onClick={() => dispatch(logOutUser())} className={"navLink"}>Log Out</NavLink>
+                <button onClick={() => dispatch(logOutUser())} className={"navLink"}>Log Out</button>
               </>
             ) : (
               <>
@@ -40,16 +41,21 @@ export const App = () => {
         </nav>
         <Routes>
           <Route path="/register" element={
-            <RestrictedRoute redirect={'/contacts'}>
+            <RestrictedRoute redirectTo={'/contacts'}>
               <Register />
             </RestrictedRoute>
           } />
           <Route path="/login" element={
-            <RestrictedRoute redirect={'/contacts'}>
+            <RestrictedRoute redirectTo={'/contacts'}>
               <Login />
             </RestrictedRoute>
           } />
-          <Route path="/contacts" element={<Contacts/>} />
+          <Route path="/contacts" element={
+            <PrivateRoute redirectTo={'/login'}>
+              <Contacts />
+            </PrivateRoute>
+          }
+          />
           <Route path="*" element={<NotFound/>} />
         </Routes>
       </Suspense>
