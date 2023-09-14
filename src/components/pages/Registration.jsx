@@ -34,7 +34,7 @@ const Register = () => {
                 <label htmlFor="password" className="label"><span>Password</span>
                     <input type="password" name="password" placeholder="Enter your password" minLength={7}/>
                 </label>
-                <button type="submit" className="submit">Register</button>
+                <button type="submit" className="submit-auth-form">Register</button>
             </form>
         </div>
     );

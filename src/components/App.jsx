@@ -24,12 +24,12 @@ export const App = () => {
   return (
     <div className="main">
       <Suspense fallback={<div>Loading...</div>}>
-        <nav>
+        <nav className="nav">
           { authenticated ? (
               <>
                 <NavLink to="/contacts" className={"navLink"}>Contacts</NavLink>
-                <span>Hello, {userData.name}</span>
-                <button onClick={() => dispatch(logOutUser())} className={"navLink"}>Log Out</button>
+                <span className="name">Hello, {userData.name}</span>
+                <button onClick={() => dispatch(logOutUser())} className={"navLink logout"}>Log Out</button>
               </>
             ) : (
               <>

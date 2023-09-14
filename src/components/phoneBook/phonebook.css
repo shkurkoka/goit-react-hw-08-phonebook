@@ -1,12 +1,25 @@
 .main{
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.nav{
+    display: flex;
+    gap: 10px;
+}
+
+.name{
+    border-radius: 5px;
+    border: 2px solid lightgrey;
+    padding: 10px;
 }
 
 .form{
     display: flex;
     flex-direction: column;
     width: 400px;
+    background-color: whitesmoke;
     border: 1px solid black;
     padding: 5px;
 }
@@ -16,16 +29,14 @@
     flex-direction: column;
 }
 
-.label{
-    gap: 10px;
-}
-
 input{
     width: 200px;
     margin-top: 5px;
+    margin-left: 10px;
 }
 
-.submit, .delete{
+.submit-auth-form, .submit, .delete{
+    width: 175px;
     margin-top: 10px;
     border-radius: 5px;
     border: 2px solid lightgrey;
@@ -33,10 +44,14 @@ input{
 
 .submit{
     width: 175px;
+    background-color: lightgreen;
 }
 
 .delete{
     width: 65px;
+    color: yellow;
+    background-color: red;
+    margin-left: 15px;
 }
 
 .navLink{
@@ -47,4 +62,24 @@ input{
     background-color: whitesmoke;
     border: 1px solid gray;
     cursor: pointer;
+}
+
+.logout{
+    color: white;
+    font-weight: bold;
+    background-color: blue;
+}
+
+.contact-list{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    text-decoration: none;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.contact-list-item{
+    list-style-type: none;
 }

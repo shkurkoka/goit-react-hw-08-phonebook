@@ -16,9 +16,9 @@ export const ContactList = () => {
 
 
   return (
-    <ul>
+    <ul className="contact-list">
       {getFilteredContacts().map(contact => (
-        <li key={contact.id}>
+        <li key={contact.id} className="contact-list-item">
           <ContactItem contact={contact} />
         </li>
       ))}
