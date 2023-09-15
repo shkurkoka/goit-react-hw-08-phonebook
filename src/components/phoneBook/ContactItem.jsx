@@ -7,7 +7,7 @@ export const ContactItem = ({ contact }) => {
 
   return (
     <div>
-      <span>{contact.name}: {contact.number}</span>
+      <span className="contact-list-item-text">{contact.name}: {contact.number}</span>
       <button className="delete" onClick={() => dispatch(deleteContact(contact.id))}>
         Delete
       </button>

@@ -28,7 +28,7 @@ export const App = () => {
           { authenticated ? (
               <>
                 <NavLink to="/contacts" className={"navLink"}>Contacts</NavLink>
-                <span className="name">Hello, {userData.name}</span>
+                <span className="Username">Hello, {userData.name}</span>
                 <button onClick={() => dispatch(logOutUser())} className={"navLink logout"}>Log Out</button>
               </>
             ) : (
