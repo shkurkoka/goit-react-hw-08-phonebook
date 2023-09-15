@@ -1,10 +1,20 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../phoneBook/phonebook.css";
 import { registerUser } from "redux/auth/operations";
+import { getUserError } from "redux/auth/authReducer";
 
 const Register = () => {
     const dispatch = useDispatch();
+    let error = useSelector(getUserError);
     
+    if (error === "Unable to fetch user") {
+        error = null;
+    }
+
+    if (error === "Request failed with status code 400") {
+        error = "This email is already registered";
+    }
+
     const handleSubmit = evt => {
         evt.preventDefault();
         const form = evt.currentTarget;
@@ -23,12 +33,12 @@ const Register = () => {
 
     return (
         <div className="">
-            <h2>RegisterPage</h2>
+            <h2 className="header">RegisterPage</h2>
             <form onSubmit={handleSubmit} action="" className="form">
                 <label htmlFor="name" className="label"><span>Name</span>
                     <input type="name" name="name" placeholder="Enter your name"/>
                 </label>
-                <label htmlFor="email" className="label"><span>Mail</span>
+                <label htmlFor="email" className="label"><span>Email</span>
                     <input type="email" name="email" placeholder="Enter your mail"/>
                 </label>
                 <label htmlFor="password" className="label"><span>Password</span>
@@ -36,6 +46,7 @@ const Register = () => {
                 </label>
                 <button type="submit" className="submit-auth">Register</button>
             </form>
+            <span>{error}</span>
         </div>
     );
 }

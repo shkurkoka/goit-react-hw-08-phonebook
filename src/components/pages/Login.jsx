@@ -1,10 +1,20 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "redux/auth/operations";
+import { getUserError } from "redux/auth/authReducer";
 import "../phoneBook/phonebook.css";
 
 const Login = () => {
     const dispatch = useDispatch();
-    
+    let error = useSelector(getUserError);
+
+    if (error === "Unable to fetch user") {
+        error = null;
+    }
+
+    if (error === "Request failed with status code 400") {
+        error = "Wrong email or password";
+    }
+
     const handleSubmit = evt => {
         evt.preventDefault();
         const form = evt.currentTarget;
@@ -21,9 +31,9 @@ const Login = () => {
 
     return (
         <div className="">
-            <h2>LoginPage</h2>
+            <h2 className="header">LoginPage</h2>
             <form onSubmit={handleSubmit} action="" className="form">
-                <label htmlFor="email" className="label"><span>Mail</span>
+                <label htmlFor="email" className="label"><span>Email</span>
                     <input type="email" name="email" placeholder="Enter your mail"/>
                 </label>
                 <label htmlFor="password" className="label"><span>Password</span>
@@ -31,6 +41,7 @@ const Login = () => {
                 </label>
                 <button type="submit" className="submit-auth">Login</button>
             </form>
+            <span>{error}</span>
         </div>
     );
 }

@@ -8,6 +8,12 @@ body{
     align-items: center;
 }
 
+.header{
+    text-align: center;
+    font-weight: bold;
+    color: #2d78c4;
+}
+
 input{
     width: 200px;
     border-radius: 4px;
@@ -108,4 +114,8 @@ input{
 
 .contact-list-item-text{
     color: #2d78c4;
+}
+
+.error-page{
+    width: 175px;
 }

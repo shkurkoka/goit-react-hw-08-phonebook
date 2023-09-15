@@ -10,6 +10,7 @@ const Register = lazy(() => import("./pages/Registration"));
 const Login = lazy(() => import("./pages/Login"));
 const Contacts = lazy(() => import("./pages/Contacts"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Home = lazy(() => import("./pages/Home"));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -26,13 +27,15 @@ export const App = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <nav className="nav">
           { authenticated ? (
-              <>
+            <>
+                <NavLink to="/" className={"navLink"}>Home</NavLink>
                 <NavLink to="/contacts" className={"navLink"}>Contacts</NavLink>
                 <span className="Username">Hello, {userData.name}</span>
                 <button onClick={() => dispatch(logOutUser())} className={"navLink logout"}>Log Out</button>
               </>
             ) : (
               <>
+                <NavLink to="/" className={"navLink"}>Home</NavLink>
                 <NavLink to="/register" className={"navLink"}>Register</NavLink>
                 <NavLink to="/login" className={"navLink"}>Login</NavLink>
               </>
@@ -40,6 +43,7 @@ export const App = () => {
           }
         </nav>
         <Routes>
+          <Route exact path="/" element={<Home />} />
           <Route path="/register" element={
             <RestrictedRoute redirectTo={'/contacts'}>
               <Register />
@@ -56,7 +60,7 @@ export const App = () => {
             </PrivateRoute>
           }
           />
-          <Route path="*" element={<NotFound/>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </div>
